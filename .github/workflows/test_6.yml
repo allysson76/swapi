@@ -1,0 +1,32 @@
+name: Teste de API - Clima
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    # Passo 1: Checkout do código
+    - name: Check out code
+      uses: actions/checkout@v2
+
+    # Passo 2: Configuração do Node.js
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'  # ou qualquer versão que você use
+
+    # Passo 3: Instalar dependências
+    - name: Install dependencies
+      run: npm install
+
+    # Passo 4: Rodar os testes
+    - name: Run tests
+      run: npm test
