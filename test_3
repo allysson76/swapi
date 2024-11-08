@@ -1,0 +1,22 @@
+const request = require('supertest');
+
+// https://swapi.dev/api
+// /people/1...
+// /films/1...
+// /species/1...
+// /vehicles/1...
+// /starships/1...
+// /planets/1...
+
+test('testa as informações de algum veículo', async () => {
+    const answer = await request('https://swapi.dev/api').get('/vehicles/42') //vehicles/42  - Sith speeder
+    
+    // Verifica se o status de requisição está retornando verdadeiro
+    expect(answer.status).toBe(200);
+
+    // Verifica se o criador é o certo
+    expect(answer.body.manufacturer).toBe('Razalon');
+
+    // Verifica se o nome está correto
+    expect(answer.body.name).toBe('Sith speeder');
+});

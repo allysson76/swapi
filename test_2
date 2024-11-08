@@ -1,0 +1,19 @@
+const request = require('supertest');
+
+// https://swapi.dev/api
+// /people/1...
+// /films/1...
+// /species/1...
+// /vehicles/1...
+// /starships/1...
+// /planets/1...
+
+test('testa as informações de alguma espécie', async () => {
+    const answer = await request('https://swapi.dev/api').get('/species/6') //species/6 - Yoda's species
+    
+    // Verifica se o status de requisição está retornando verdadeiro
+    expect(answer.status).toBe(200);
+
+    // Verifica se a linguagem falada está correta
+    expect(answer.body.language).toBe('Galactic basic');
+});
